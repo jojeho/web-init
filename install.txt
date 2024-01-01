@@ -1,0 +1,31 @@
+npx create-next-app@latest
+move to folder 
+
+tsconfig.json
+change es5 to 
+ "target": "es6",
+
+yarn add -D @pandacss/dev
+npx panda init --postcss
+
+
+package.json의 scripts 부분에 preapre 명령어를 다음과 같이 추가해줍니다.
+빌드 타임에 모든 css가 완성되기때문에 dev 종속성으로 설치해주도록 합니다.
+ "scripts": {
++    "prepare": "panda codegen --clean",
+    "dev": "next dev",
+package.json
+
+"prepare": ""yarn panda codegen",
+
+// Where to look for your css declarations
+in  panda.config.ts
+
+include: ["./src/components/**/*.{ts,tsx,js,jsx}", "./src/app/**/*.{ts,tsx,js,jsx}"],
+ jsxFramework: 'react'
+
+이제 app/global.css로 진입하여 다음 코드를 추가해줍니다.
+@layer reset, base, tokens, recipes, utilities;
+
+in layout.tsx
+import { css } from '@/styled-system/css';
